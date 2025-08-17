@@ -1,15 +1,24 @@
 package hello.core.order
 
+import hello.core.AppConfig
 import hello.core.member.Grade
 import hello.core.member.Member
-import hello.core.member.MemberServiceImpl
+import hello.core.member.MemberService
 import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class OrderServiceTest {
 
-    val memberService = MemberServiceImpl()
-    val orderService = OrderServiceImpl()
+    lateinit var memberService: MemberService
+    lateinit var orderService: OrderService
+
+    @BeforeEach
+    fun beforeEach() {
+        val appConfig = AppConfig()
+        memberService = appConfig.memberService()
+        orderService = appConfig.orderService()
+    }
 
     @Test
     fun createOrder() {
