@@ -12,4 +12,7 @@ class OrderServiceImpl(private val memberRepo: MemberRepo, private val discountP
 
         return Order(memberId, itemName, itemPrice, discountPrice)
     }
+
+    // 테스트 용도
+    fun getMemberRepo() = memberRepo
 }
