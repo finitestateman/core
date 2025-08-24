@@ -1,7 +1,7 @@
 package hello.core.singleton
 
 import hello.core.AppConfig
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -23,7 +23,31 @@ class SingletonTest {
         println("memberService1 = $memberService1")
         println("memberService2 = $memberService2")
 
-        Assertions.assertThat(memberService1).isNotSameAs(memberService2)
+        assertThat(memberService1).isNotSameAs(memberService2)
+
+    }
+
+    @Test
+    @DisplayName("싱글톤 패턴을 적용한 객체 사용")
+    fun singletonServiceTest() {
+
+        val singletonService1 = SingletonService.instance
+        val singletonService2 = SingletonService.instance
+
+        val singletonObject1 = SingletonObjectService
+        val singletonObject2 = SingletonObjectService
+
+        println("singletonService1 = $singletonService1")
+        println("singletonService2 = $singletonService2")
+
+        println("singletonObject1 = $singletonObject1")
+        println("singletonObject2 = $singletonObject2")
+
+        singletonService1.logic()
+        singletonObject1.logic()
+
+        assertThat(singletonService1).isSameAs(singletonService2)
+        assertThat(singletonObject1).isSameAs(singletonObject2)
 
     }
 }
