@@ -33,4 +33,14 @@ class ConfigurationSingletonTest {
             .isSameAs(memberRepo1)
             .isSameAs(memberRepo2)
     }
+
+    @Test
+    fun configurationDeep() {
+
+        val ac: ApplicationContext = AnnotationConfigApplicationContext(AppConfig::class.java)
+        val bean = ac.getBean<AppConfig>()
+
+        println("bean = ${bean.javaClass}")
+
+    }
 }
