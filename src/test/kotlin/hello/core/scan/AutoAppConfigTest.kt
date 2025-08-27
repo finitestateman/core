@@ -1,7 +1,8 @@
-package hello.core
+package hello.core.scan
 
+import hello.core.AutoAppConfig
 import hello.core.member.MemberService
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.getBean
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
@@ -14,7 +15,7 @@ class AutoAppConfigTest {
         val ac = AnnotationConfigApplicationContext(AutoAppConfig::class.java)
 
         val memberService = ac.getBean<MemberService>()
-        assertThat(memberService).isInstanceOf(MemberService::class.java)
+        Assertions.assertThat(memberService).isInstanceOf(MemberService::class.java)
     }
 
 }
