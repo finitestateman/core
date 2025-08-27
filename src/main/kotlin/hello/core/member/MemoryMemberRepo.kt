@@ -1,5 +1,8 @@
 package hello.core.member
 
+import org.springframework.stereotype.Component
+
+@Component
 class MemoryMemberRepo : MemberRepo {
 
     companion object {
