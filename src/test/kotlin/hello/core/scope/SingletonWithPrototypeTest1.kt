@@ -2,9 +2,9 @@ package hello.core.scope
 
 import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
+import jakarta.inject.Provider
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.ObjectProvider
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.getBean
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
@@ -45,10 +45,10 @@ class SingletonWithPrototypeTest1 {
     class ClientBean {
 
         @Autowired
-        lateinit var prototypeBeanProvier: ObjectProvider<PrototypeBean>
+        lateinit var prototypeBeanProvider: Provider<PrototypeBean>
 
         fun logic(): Int {
-            val prototypeBean = prototypeBeanProvier.getObject()
+            val prototypeBean = prototypeBeanProvider.get()
             prototypeBean.addCount()
             val count = prototypeBean.count
             return count
