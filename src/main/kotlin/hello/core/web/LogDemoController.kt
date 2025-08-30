@@ -2,6 +2,7 @@ package hello.core.web
 
 import hello.core.common.MyLogger
 import jakarta.servlet.http.HttpServletRequest
+import org.springframework.beans.factory.ObjectProvider
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody
 @Controller
 class LogDemoController(
     private val logDemoService: LogDemoService,
-    private val myLogger: MyLogger
+    private val myLoggerProvider: ObjectProvider<MyLogger>
 ) {
 
     @RequestMapping("log-demo")
@@ -17,9 +18,12 @@ class LogDemoController(
     fun logDemo(request: HttpServletRequest): String {
 
         val requestURL = request.requestURL.toString()
+
+        val myLogger = myLoggerProvider.getObject()
         myLogger.requestURL = requestURL
 
         myLogger.log("controller test")
+        Thread.sleep(1_000L)
         logDemoService.logic("testId")
 
         return "OK"
