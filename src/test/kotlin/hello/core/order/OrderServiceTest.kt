@@ -32,5 +32,4 @@ class OrderServiceTest {
         Assertions.assertThat(order.discountPrice).isEqualTo(1_000)
 
     }
-
 }
