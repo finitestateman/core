@@ -5,6 +5,7 @@ import hello.core.member.MemberRepo
 import org.springframework.stereotype.Component
 
 @Component
+// @RequiredArgsConstructor
 class OrderServiceImpl(
     private val memberRepo: MemberRepo,
     private val discountPolicy: DiscountPolicy
