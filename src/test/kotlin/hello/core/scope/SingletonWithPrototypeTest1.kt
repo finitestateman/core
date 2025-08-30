@@ -4,6 +4,8 @@ import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.ObjectProvider
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.getBean
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Scope
@@ -35,14 +37,18 @@ class SingletonWithPrototypeTest1 {
 
         val clientBean2 = ac.getBean<ClientBean>()
         val count2 = clientBean2.logic()
-        assertThat(count2).isEqualTo(2)
+        assertThat(count2).isEqualTo(1)
 
     }
 
     @Scope("singleton")
-    class ClientBean(val prototypeBean: PrototypeBean) {
+    class ClientBean {
+
+        @Autowired
+        lateinit var prototypeBeanProvier: ObjectProvider<PrototypeBean>
 
         fun logic(): Int {
+            val prototypeBean = prototypeBeanProvier.getObject()
             prototypeBean.addCount()
             val count = prototypeBean.count
             return count
