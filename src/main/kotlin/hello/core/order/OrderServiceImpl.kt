@@ -1,5 +1,6 @@
 package hello.core.order
 
+import hello.core.annotation.MainDiscountPolicy
 import hello.core.discount.DiscountPolicy
 import hello.core.member.MemberRepo
 import org.springframework.stereotype.Component
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Component
 // @RequiredArgsConstructor
 class OrderServiceImpl(
     private val memberRepo: MemberRepo,
-    private val discountPolicy: DiscountPolicy
+    @param:MainDiscountPolicy private val discountPolicy: DiscountPolicy
 ) : OrderService {
 
     override fun createOrder(memberId: Long, itemName: String, itemPrice: Int): Order {
