@@ -1,5 +1,8 @@
 package hello.core
 
+import hello.core.member.MemberRepo
+import hello.core.member.MemoryMemberRepo
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.FilterType
@@ -12,4 +15,8 @@ import org.springframework.context.annotation.FilterType
         ComponentScan.Filter(type = FilterType.ANNOTATION, classes = [Configuration::class])
     ]
 )
-class AutoAppConfig
+class AutoAppConfig {
+
+    @Bean(name = ["memoryMemberRepo"])
+    fun memoryMemberRepo(): MemberRepo = MemoryMemberRepo()
+}
