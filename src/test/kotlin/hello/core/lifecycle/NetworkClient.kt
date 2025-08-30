@@ -1,5 +1,8 @@
 package hello.core.lifecycle
 
+import jakarta.annotation.PostConstruct
+import jakarta.annotation.PreDestroy
+
 class NetworkClient {
 
     var url: String? = null
@@ -20,12 +23,14 @@ class NetworkClient {
         println("close $url")
     }
 
+    @PostConstruct
     fun init() {
         println("NetworkClient.init")
         connect()
         call("초기화 연결 메시지")
     }
 
+    @PreDestroy
     fun close() {
         println("NetworkClient.close")
         disconnect()
