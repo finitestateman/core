@@ -2,14 +2,13 @@ package hello.core.order
 
 import hello.core.discount.DiscountPolicy
 import hello.core.member.MemberRepo
-import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
 
 @Component
 // @RequiredArgsConstructor
 class OrderServiceImpl(
     private val memberRepo: MemberRepo,
-    @param:Qualifier("mainDiscountPolicy") private val discountPolicy: DiscountPolicy
+    private val discountPolicy: DiscountPolicy
 ) : OrderService {
 
     override fun createOrder(memberId: Long, itemName: String, itemPrice: Int): Order {
