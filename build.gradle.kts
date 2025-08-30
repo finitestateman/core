@@ -29,6 +29,7 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("jakarta.inject:jakarta.inject-api:2.0.1")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
